@@ -28,7 +28,8 @@ let pw = document.getElementById('pw');
 
 function joincheck(){
     // 1. ID 입력 조건
-    const id = document.getElementById('id');
+    //const id = document.getElementById('id');
+    const id = document.querySelector('#all');
     const idm = document.getElementById('idm');
 
     id.addEventListener('blur', function(){
@@ -67,7 +68,8 @@ function joincheck(){
     // const name = document.getElementById('name');
     // const email = document.getElementById('email');
     // const phone = document.getElementById('phone');
-    const cb = document.getElementsByClassName('cb');
+    // const cb = document.getElementsByClassName('cb');
+    const cb = document.querySelectorAll('.cb');
     const ch = document.getElementsByClassName('ch');
 
     for(let i = 0; i < cb.length; i++){

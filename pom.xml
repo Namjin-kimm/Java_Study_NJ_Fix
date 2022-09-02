@@ -15,14 +15,6 @@
 	</properties>
 	<dependencies>
 	
-	<!-- Test 시 servlet context 에러 해결 -->
-	<!-- <dependency>
-         <groupId>javax.servlet</groupId>
-         <artifactId>javax.servlet-api</artifactId>
-         <version>3.1.0</version>
-         <scope>test</scope>
-      </dependency> -->
-	
 	<!-- commons-fileupload -->
       <dependency>
           <groupId>commons-fileupload</groupId>
@@ -141,6 +133,15 @@
 			<version>2.5</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		<!-- Test 시 servlet context 에러 해결 -->
+	<dependency>
+         <groupId>javax.servlet</groupId>
+         <artifactId>javax.servlet-api</artifactId>
+         <version>3.1.0</version>
+         <scope>test</scope>
+      </dependency>
+		
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>

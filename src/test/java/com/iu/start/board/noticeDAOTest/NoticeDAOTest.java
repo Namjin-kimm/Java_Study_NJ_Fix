@@ -21,8 +21,9 @@ public class NoticeDAOTest extends MyAbstractTest{
 
 	@Autowired
 	private NoticeDAO noticeDAO;
-	@Autowired
-	private MockServletContext mockServletContext;
+	
+//	@Autowired
+//	private ServletContext servletContext;
 	
 	@Test
 	public void setAddTest() throws Exception {

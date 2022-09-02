@@ -6,11 +6,13 @@ import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.iu.start.MyAbstractTest;
 import com.iu.start.board.impl.BoardDAO;
 import com.iu.start.board.impl.BoardDTO;
 
+@WebAppConfiguration
 public class QnaDAOTest extends MyAbstractTest{
 	
 	@Autowired
@@ -22,14 +24,27 @@ public class QnaDAOTest extends MyAbstractTest{
 //		assertNotEquals(0, ar);
 //	}
 	
-//	@Test
+	@Test
 	public void setAdd() throws Exception {
-		QnaDTO qnaDTO = new QnaDTO();
-		qnaDTO.setTitle("hahaho");
-		qnaDTO.setWriter("hoho");
-		qnaDTO.setContents("hahaha");
-		int result = qnaDAO.setAdd(qnaDTO);
-		assertEquals(1, result);
+//		QnaDTO qnaDTO = new QnaDTO();
+//		qnaDTO.setTitle("hahaho");
+//		qnaDTO.setWriter("hoho");
+//		qnaDTO.setContents("hahaha");
+//		int result = qnaDAO.setAdd(qnaDTO);
+//		assertEquals(1, result);
+		
+		BoardDTO boardDTO = new BoardDTO();
+		for(int i = 0; i <44; i++) {
+			boardDTO.setTitle("KK" + i);
+			boardDTO.setWriter("KNJ" + i);
+			boardDTO.setContents("kkkkkk" + i);
+			int result = qnaDAO.setAdd(boardDTO);
+			
+				if(i%10 == 0) {
+					Thread.sleep(500);
+					}
+			}
+			System.out.println("Finish!!!");
 	}
 	
 //	@Test
