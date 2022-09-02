@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+			<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		    
+<mapper namespace="com.iu.home.board.notice.NoticeDAO">
+<sql id="search">
+	WHERE
+		<choose>
+			<when test="kind == 'title'">TITlE</when>
+			<when test="kind == 'writer'">WRITER</when>
+			<otherwise>CONTENTS</otherwise>
+		</choose>
+	LIKE '%' || #{search} || '%'
+</sql>
+
+	<select id="getList" resultType="NoticeDTO" parameterType="Pager">
+		SELECT * FROM 
+			(SELECT ROWNUM R, N.* FROM
+				(SELECT * FROM NOTICE 
+					<include refid="search"></include>
+				 ORDER BY NUM DESC) N)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
+
+	<insert id="setAdd" parameterType="BoardDTO">
+	<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+            SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+      </selectKey>
+		INSERT INTO NOTICE VALUES (#{num}, #{title}, #{contents}, #{writer}, SYSDATE, 0)
+	</insert>
+	
+	<insert id="setAddFile" parameterType="BoardFileDTO">
+      INSERT INTO NOTICEFILE (FILENUM, FILENAME, ORINAME, NUM)
+       VALUES(FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{num})
+     </insert>
+	
+	<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailResult">
+	 	SELECT N.*, NF.*
+	 	FROM NOTICE N
+	 		LEFT JOIN
+	 		NOTICEFILE NF
+	 		ON N.NUM = NF.NUM
+	 	WHERE N.NUM = #{num}
+	</select>
+	
+	<resultMap type="NoticeDTO" id="getDetailResult">
+		<id column="num" property="num"/>
+		<result column="title" property="title"/>
+		<result column="writer" property="writer"/>
+		<result column="contents" property="contents"/>
+		<result column="regDate" property="regDate"/>
+		<result column="hit" property="hit"/>
+		<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
+			<id column="FILENUM" property="fileNum"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</collection>
+	</resultMap>
+	
+	<update id="setUpdate" parameterType="BoardDTO">
+		UPDATE NOTICE SET TITLE = #{title}, CONTENTS = #{contents} WHERE NUM = #{num}
+	</update>
+	
+	<delete id="setDelete" parameterType="BoardDTO">
+		DELETE NOTICE WHERE NUM = #{num}
+	</delete>
+	
+	<select id="getCount" resultType="Long" parameterType="Pager">
+		SELECT COUNT(NUM) FROM NOTICE
+			<include refid="search"></include>
+	</select>
+
+		    
+</mapper>

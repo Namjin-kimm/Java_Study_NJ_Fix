@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="com.iu.start.bankAccount.BankAccountDAO">
+    
+    	<insert id="add" parameterType="BankAccountDTO">
+    		INSERT INTO BANKACCOUNT VALUES (ACCOUNT_SEQ.NEXTVAL, #{userName}, #{bookNum}, SYSDATE)
+    	</insert>
+    	
+    	<select id="getListByUserName" parameterType="BankMembersDTO" resultMap="getListByUserNameResult">
+    		SELECT BA.ACCOUNTNUM, BB.BOOKNAME, BA.ACCOUNTDATE
+    		FROM BANKACCOUNT BA
+    			INNER JOIN
+    			BANKBOOK BB
+    			<!-- ON BA.BOOKNUM = BB.BOOKNUM -->
+    			USING(BOOKNUM)
+    			WHERE BA.USERNAME=#{username}
+    	</select>
+    	
+    	<resultMap type="BankAccountDTO" id="getListByUserNameResult">
+    		<id column = "ACCOUNTNUM" property="accountNum" />
+    		<result column = "ACCOUNTDATE" property = "accountDate" />
+    		<association property="bankBookDTO" javaType="BankBookDTO">
+    			<result column = "BOOKNAME" property="bookName"/>
+    		</association>
+    	</resultMap>
+    </mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+				  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+				  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+				  
+		 <configuration>
+		 <typeAliases>
+		 	<typeAlias type="com.iu.start.test.members.BankMembersDTO" alias="BankMembersDTO"/>
+		 	<typeAlias type="java.lang.String" alias="String"/>
+		 	<typeAlias type="com.iu.start.bankbook.BankBookDTO" alias="BankBookDTO"/>
+		 	<typeAlias type="com.iu.start.bankAccount.BankAccountDTO" alias="BankAccountDTO"/>
+		 	<typeAlias type="java.util.List" alias="List"/>
+		 	<typeAlias type="com.iu.start.board.impl.BoardDTO" alias="BoardDTO"/>
+		 	<typeAlias type="com.iu.start.board.notice.NoticeDTO" alias="NoticeDTO"/>
+		 	<typeAlias type="com.iu.start.board.qna.QnaDTO" alias="QnaDTO"/>
+		 	<typeAlias type="java.lang.Long" alias="Long"/>
+		 	<typeAlias type="com.iu.start.util.Pager" alias="Pager"/>
+		 	<typeAlias type="com.iu.start.test.members.BankMembersFileDTO" alias="BankMembersFileDTO"/>
+		 	<typeAlias type="com.iu.start.board.impl.BoardFileDTO" alias="BoardFileDTO"/>
+		 </typeAliases>
+		</configuration>
