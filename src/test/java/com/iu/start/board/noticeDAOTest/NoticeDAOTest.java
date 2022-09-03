@@ -29,7 +29,7 @@ public class NoticeDAOTest extends MyAbstractTest{
 	public void setAddTest() throws Exception {
 		BoardDTO boardDTO = new BoardDTO();
 //		NoticeDTO noticeDTO = new NoticeDTO();
-		for(int i = 0; i <44; i++) {
+		for(int i = 0; i <100; i++) {
 		boardDTO.setTitle("KK" + i);
 		boardDTO.setWriter("KNJ" + i);
 		boardDTO.setContents("kkkkkk" + i);
