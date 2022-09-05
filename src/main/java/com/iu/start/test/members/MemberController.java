@@ -59,14 +59,29 @@ public class MemberController {
 	
 @RequestMapping(value = "login.iu", method= RequestMethod.POST)
 	
-	public String login(BankMembersDTO bankMembersDTO, HttpSession session) throws Exception{
+	public ModelAndView login(BankMembersDTO bankMembersDTO, HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
 		System.out.println("DB 로그인 실행");
 		bankMembersDTO = bankMembersService.getLogin(bankMembersDTO);
 		System.out.println(bankMembersDTO);
 //		"redirect: 다시접속할 URL주소(절대경로,상대경로)"
 //		model.addAttribute("member", bankMembersDTO);
 		session.setAttribute("member", bankMembersDTO);
-		return "redirect:../";
+		
+		int result = 0;
+		String message = "로그인 실패";
+		String url = "./login.iu";
+		if(bankMembersDTO != null) {
+			message = "로그인 성공";
+			result = 1;
+			url = "../";
+		}
+		
+		mv.addObject("result", result);
+		mv.addObject("message", message);
+		mv.addObject("url", url);
+		mv.setViewName("common/result");
+		return mv;
 	}
 	
 	// /member/search  GET  -> 아이디를 입력하는 폼

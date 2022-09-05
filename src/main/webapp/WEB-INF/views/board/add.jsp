@@ -37,8 +37,8 @@
 				<!-- <p>Image</p>
 				<p><input class="form-control form-control-lg" type="file" aria-label=".form-control-lg example" name="files"></p>
 				<p>Image</p>
-				<p><input class="form-control form-control-lg" type="file" aria-label=".form-control-lg example" name="files"></p>
-				<button type="submit" class="btn btn-primary">Submit</button> -->
+				<p><input class="form-control form-control-lg" type="file" aria-label=".form-control-lg example" name="files"></p> -->
+				<button type="submit" class="btn btn-primary">Submit</button>
 			</section>
 		</form>
 <c:import url="../template/footer.jsp"></c:import>
