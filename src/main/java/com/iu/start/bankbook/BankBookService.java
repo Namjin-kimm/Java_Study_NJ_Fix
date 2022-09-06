@@ -10,10 +10,15 @@ import org.springframework.stereotype.Service;
 public class BankBookService {
 	@Autowired
 	private BankBookDAO bankBookDAO;
+	private BankBookCommentDAO bankBookCommentDAO;
 	
-public int setDelete(BankBookDTO bankBookDTO)throws Exception{
-	return bankBookDAO.setDelete(bankBookDTO);
-};
+	public int setCommentAdd(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		return bankBookCommentDAO.setCommentAdd(bankBookCommentDTO);
+	}
+	
+	public int setDelete(BankBookDTO bankBookDTO)throws Exception{
+		return bankBookDAO.setDelete(bankBookDTO);
+	};
 	
 	public int setUpdate(BankBookDTO bankBookDTO)throws Exception{
 		return bankBookDAO.setUpdate(bankBookDTO);
