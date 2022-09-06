@@ -36,6 +36,6 @@
 		<a href="delete.iu?num=${boardDTO.num}">삭제</a>
 	</section>
 <c:import url="../template/footer.jsp"></c:import>
-
+<script src="/resources/js/board_file.js"></script>
 </body>
 </html>

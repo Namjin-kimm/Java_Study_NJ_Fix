@@ -41,18 +41,44 @@
 		</tr>
 	</tbody>
 </table>
-	</section>
-	<c:import url="../template/footer.jsp"></c:import>
+
+<!-- comment 영역 -->
+<div class="row">
+	<div class="mb-3">
+		<label for="writer" class="form-label">UserName</label>
+		<input type="text" class="form-control" id="writer">
+	  </div>
+
+	  <div class="mb-3">
+		<label for="contents" class="form-label">Comment</label>
+		<textarea class="form-control" id="contents" rows="3"></textarea>
+	  </div>
+
+	  <div class="mb-3">
+		<button type="button" id="btn" data-booknum="${detail.bookNum}">댓글 작성</button>
+	  </div>
+
+	  <!-- Comment List 출력 -->
+	  <div id="commentList">
+		
+	  </div>
+
+</div>
+<!-- comment 영역 -->
+<div class="row">
 	<%-- <%}else{ %>
 	<h3>Data가 없다</h3>
 	<%} %> --%>
 	<a href="list.iu">리스트보기</a>
 	<a href="update?bookNum=${detail.bookNum}">수정</a>
 	<a href="delete?bookNum=${detail.bookNum}">삭제</a>
-	
+
 	<c:if test="${not empty sessionScope.member}">
 	<a href="../bankAccount/add.iu?bookNum=${detail.bookNum}">가입하기</a>
 	</c:if>
-
+</div>
+	</section>
+	<c:import url="../template/footer.jsp"></c:import>
+<script src="/resources/js/bankBookComment.js"></script>
 </body>
 </html>

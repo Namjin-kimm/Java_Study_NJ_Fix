@@ -6,9 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.iu.start.util.CommentPager;
 
 @Controller
 @RequestMapping(value = "/bankbook/*")
@@ -17,6 +22,54 @@ public class BankBookController {
 	private BankBookService bankBookService;
 	
 	
+//	@PostMapping(value = "commentAdd")
+//	public ModelAndView commentAdd(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+//		System.out.println(bankBookCommentDTO.getBookNum());
+//		System.out.println(bankBookCommentDTO.getWriter());
+//		System.out.println(bankBookCommentDTO.getContents());
+//		int result = bankBookService.setCommentAdd(bankBookCommentDTO);
+//		ModelAndView mv = new ModelAndView();
+//		mv.addObject("result", result);
+//		mv.setViewName("common/ajaxResult");
+//		return mv;
+//	}
+	
+	
+	//1.JSP에 출력하고 결과물을 응답으로 전
+	@GetMapping(value = "commentList")
+	@ResponseBody
+	public List<BankBookCommentDTO> commentList(CommentPager commentPager)throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<BankBookCommentDTO> list = bankBookService.getCommentList(commentPager);
+//		mv.addObject("commentList", list);
+//		mv.setViewName("common/commentList");
+		
+		//json
+		//DTO == {}
+		//num=1 == {"num":1, "bookNum":123, "writer":"name"}
+		//["num":1, "bookNum":123, "writer"
+		
+		return list;
+	}
+	
+//	@GetMapping(value = "commentList")
+//	@ResponseBody
+//	public String commentList(CommentPager commentPager)throws Exception {
+//		List<BankBookCommentDTO> list = bankBookService.getCommentList(commentPager);
+//		String jsonResult = "{\"list\":\""+ list + "\"}";
+//		System.out.println(list.size());
+//		return jsonResult;
+//	}
+	
+	@PostMapping(value = "commentAdd")
+	@ResponseBody
+	public String commentAdd(BankBookCommentDTO bankBookCommentDTO) throws Exception{
+		int result = bankBookService.setCommentAdd(bankBookCommentDTO);
+		ModelAndView mv = new ModelAndView();
+		//{}
+		String jsonResult = "{\"result\":\""+result+"\"}";
+		return jsonResult;
+	}
 	
 	// /bankbook/delete GET
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
