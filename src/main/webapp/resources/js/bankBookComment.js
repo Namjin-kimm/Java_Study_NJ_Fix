@@ -52,6 +52,7 @@ btn.addEventListener('click', function(){
 }); // click event
 
 const commentList = document.querySelector('#commentList');
+let idx = 0;
 
 function getCommentList(p, bn){
     //1. xmlHttpRequest
@@ -78,6 +79,8 @@ function getCommentList(p, bn){
         // let table = document.createElement('table');
         // let thead = document.createElement('thead');
         let tbody = document.createElement('tbody');
+        // let tbodyAttr = document.createAttribute('id');
+        
 
         //table css 주기
         let cla = document.createAttribute('class');
@@ -91,6 +94,12 @@ function getCommentList(p, bn){
             // console.log(ar[i].contents);
             // console.log(ar[i].writer);
             let tr = document.createElement('tr');
+            
+            //. 삭제할 행의 ID
+            let trId = document.createAttribute('id');
+            trId.value = 'tr' + idx;
+            tr.setAttributeNode(trId);
+
             let td = document.createElement('td');
             //let tdText = document.createTextNode(ar[i].contents);
             //td.appendChild(tdText);
@@ -119,6 +128,11 @@ function getCommentList(p, bn){
             tdAttr.value = 'delete';
             td.setAttributeNode(tdAttr);
 
+            //. 삭제 버튼 title
+            let title = document.createAttribute('title');
+            title.value = idx;
+            td.setAttributeNode(title);
+
             tdAttr = document.createAttribute('data-num')
             tdAttr.value = list[i].num;
             td.setAttributeNode(tdAttr);
@@ -126,6 +140,7 @@ function getCommentList(p, bn){
             tr.appendChild(td);
             
             tbody.appendChild(tr);
+            idx++;
         }
         commentList.append(tbody);
 
@@ -169,13 +184,67 @@ more.addEventListener('click', function(){
 
 //--------------------댓글 수정 삭제-------------------------
 commentList.addEventListener('click', function(event){
+    //1. 댓글 수정
     if(event.target.className == 'update'){
-        console.log('update');
+
+        // console.log('update');
+        // let contents = event.target.previousSibling.previousSibling.previousSibling;
+        // console.log(contents);
+        // let v = contents.innerHTML;
+        // contents.innerHTML = "<textarea>" + v + "</textarea>";
+
+        // Modal 창 이용
+        document.querySelector('#up').click();
+
+    //2. 댓글 삭제
     }else if(event.target.className == 'delete'){
         console.log('delete');
         let check = window.confirm('삭제할거야?');
         if(check == true){
             console.log(event.target.getAttribute('data-num'));
+
+            //1. xmlHTTPRequest 객체 생성
+            const xhttp = new XMLHttpRequest();
+
+            //2. 메서드, url 정보
+            xhttp.open('POST', "./commentDelete");
+
+            //3. enctype(Defalut 값)
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            //4. 요청 발생
+            xhttp.send("num=" + event.target.getAttribute('data-num'));
+
+            //5. 응답 처리
+            xhttp.onreadystatechange=function(){
+                if(this.readyState==4 && this.status==200){
+                    let get = xhttp.responseText.trim();
+                    get = JSON.parse(get);
+                    console.log(get.result);
+
+                    if(get.result == 1){
+                        alert("삭제 성공")
+
+                        // 1. 리스트를 다시 불러오는 것
+                        // if(commentList.children.length != 0){
+                        //     for(let i = 0; i<commentList.children.length;){
+                        //         commentList.children[i].remove();
+                        //     }
+                        // }
+                        // page = 1;
+                        // getCommentList(page, bookNum);
+
+                        //2. 해당 행만 삭제
+                        let t = event.target.getAttribute('title');
+                        let trId = 'tr' + t;
+                        console.log()
+                        document.getElementById(trId).remove();
+
+                    }else{
+                        alert("삭제 실패");
+                    }
+                }
+            }
         }
     }
 });

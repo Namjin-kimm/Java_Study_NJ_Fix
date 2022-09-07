@@ -34,6 +34,11 @@
 		
 		<a href="update.iu?num=${boardDTO.num}">수정</a>
 		<a href="delete.iu?num=${boardDTO.num}">삭제</a>
+
+		
+
+
+
 	</section>
 <c:import url="../template/footer.jsp"></c:import>
 <script src="/resources/js/board_file.js"></script>
