@@ -1,7 +1,9 @@
 package com.iu.start.bankbook;
 
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,7 +40,7 @@ public class BankBookController {
 	//1.JSP에 출력하고 결과물을 응답으로 전
 	@GetMapping(value = "commentList")
 	@ResponseBody
-	public List<BankBookCommentDTO> commentList(CommentPager commentPager)throws Exception {
+	public Map<String, Object> commentList(CommentPager commentPager)throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<BankBookCommentDTO> list = bankBookService.getCommentList(commentPager);
 //		mv.addObject("commentList", list);
@@ -48,8 +50,12 @@ public class BankBookController {
 		//DTO == {}
 		//num=1 == {"num":1, "bookNum":123, "writer":"name"}
 		//["num":1, "bookNum":123, "writer"
+		//totalCount도 보내야 하고 commentPager도 보내야 하니 Map을 사용한다
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("pager", commentPager);
 		
-		return list;
+		return map;
 	}
 	
 //	@GetMapping(value = "commentList")

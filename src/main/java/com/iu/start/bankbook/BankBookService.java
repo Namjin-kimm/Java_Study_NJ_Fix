@@ -1,12 +1,9 @@
 package com.iu.start.bankbook;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.iu.start.util.CommentPager;
-import com.iu.start.util.Pager;
 
 @Service
 public class BankBookService {
@@ -16,7 +13,10 @@ public class BankBookService {
 	private BankBookCommentDAO bankBookCommentDAO;
 	
 	public List<BankBookCommentDTO> getCommentList(CommentPager commentPager)throws Exception{
+//		Long totalCount = bankBookCommentDAO.getCommentListTotalCount(commentPager);
+		Long totalCount = bankBookCommentDAO.getCommentListTotalCount(commentPager);
 		commentPager.getRowNum();
+		commentPager.makePage(totalCount);
 		return bankBookCommentDAO.getCommentList(commentPager);
 	}
 	
