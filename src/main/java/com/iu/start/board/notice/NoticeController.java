@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.test.members.BankMembersDTO;
 import com.iu.start.util.Pager;
 
 @Controller
@@ -57,11 +58,14 @@ public class NoticeController {
 	
 //	글작성
 	@RequestMapping(value = "add.iu", method = RequestMethod.GET)
-	public ModelAndView setAdd()throws Exception{
-		ModelAndView mv = new ModelAndView();
-//		mv.addObject("board", "Notice");
-		mv.setViewName("board/add");
-		return mv;
+	public String setAdd(HttpSession session)throws Exception{
+		BankMembersDTO bankMembersDTO = (BankMembersDTO)session.getAttribute("member");
+		
+		if(bankMembersDTO != null) {
+			return "board/add";
+		}else {
+			return "redirect:../member/login.iu";
+		}
 	}
 	
 	@RequestMapping(value = "add.iu", method = RequestMethod.POST)

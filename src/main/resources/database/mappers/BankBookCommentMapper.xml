@@ -23,4 +23,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="setCommentDelete" parameterType="BankBookCommentDTO">
 		DELETE BB_COMMENT WHERE NUM = #{num}
 	</delete>
+	
+	<update id="setCommentUpdate" parameterType="BankBookCommentDTO">
+		UPDATE BB_COMMENT SET CONTENTS=#{contents} WHERE NUM=#{num}
+	</update>
 </mapper>

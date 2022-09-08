@@ -85,6 +85,13 @@ public class BankBookController {
 		return jasonResult;
 	}
 	
+	@PostMapping(value = "commentUpdate")
+	@ResponseBody
+	public int setCommentUpdate(BankBookCommentDTO bankBookCommentDTO)throws Exception{
+		int result = bankBookService.setCommentUpdate(bankBookCommentDTO);
+		return result;
+	}
+	
 	// /bankbook/delete GET
 	@RequestMapping(value = "delete", method = RequestMethod.GET)
 	public ModelAndView delete(BankBookDTO bankBookDTO) throws Exception{
