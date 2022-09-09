@@ -29,7 +29,7 @@ let pw = document.getElementById('pw');
 function joincheck(){
     // 1. ID 입력 조건
     //const id = document.getElementById('id');
-    const id = document.querySelector('#all');
+    const id = document.querySelector('#id');
     const idm = document.getElementById('idm');
 
     id.addEventListener('blur', function(){

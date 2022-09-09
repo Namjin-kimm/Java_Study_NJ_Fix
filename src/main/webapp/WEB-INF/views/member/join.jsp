@@ -27,7 +27,7 @@
 				<div id="pwm"></div>
 				
 				<p>PW</p>
-				<p><input class="form-control form-control-lg" type="password" placeholder="PW" aria-label=".form-control-lg example" name="password" id="pw2"></p>
+				<p><input class="form-control form-control-lg" type="password" placeholder="PW" aria-label=".form-control-lg example" id="pw2"></p>
 				<div id="pwm2"></div>
 
 				<p>Name</p>

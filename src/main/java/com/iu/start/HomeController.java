@@ -30,7 +30,7 @@ public class HomeController {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
 //		}
-		
+		System.out.println("HomeController");
 		return "index";
 	}
 	

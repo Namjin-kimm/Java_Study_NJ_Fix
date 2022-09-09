@@ -28,7 +28,7 @@
 	<selectKey keyProperty="num" order="BEFORE" resultType="Long">
 		SELECT BOARD_SEQ.NEXTVAL FROM DUAL
 	</selectKey>
-	 	INSERT INTO QNA VALUES (#{num}, #{title}, #{writer}, #{contents}, SYSDATE, 0,#{num},0,0)
+	 	INSERT INTO QNA VALUES (#{num}, #{title}, #{contents}, #{writer}, SYSDATE, 0,#{num},0,0)
 	</insert>
 	
 	<select id="getDetail" parameterType="BoardDTO" resultType="QnaDTO">

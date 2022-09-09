@@ -38,7 +38,7 @@ public class MemberController {
 		BankMembersDTO bankMembersDTO = (BankMembersDTO) session.getAttribute("member");
 		bankMembersDTO = bankMembersService.getMyPage(bankMembersDTO);
 		mv.addObject("myPage", bankMembersDTO);
-		mv.setViewName("member/mypage");
+		mv.setViewName("member/myPage");
 		System.out.println(bankMembersDTO.getBankMembersFileDTO().getFileName());
 		return mv;
 	}

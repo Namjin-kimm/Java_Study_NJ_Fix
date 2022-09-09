@@ -26,7 +26,7 @@
 					<p>Title</p>
 					<p><input class="form-control form-control-lg" type="text" placeholder="Title" aria-label=".form-control-lg example" name="title"></p>
 					<p>Contents</p>
-					<p><textarea input class="form-control form-control-lg" type="text" placeholder="Contents" aria-label=".form-control-lg example" name="contents" id="contents"></textarea></p>
+					<p><textarea class="form-control form-control-lg" type="text" placeholder="Contents" aria-label=".form-control-lg example" name="contents" id="contents"></textarea></p>
 				</div>
 				
 				<div id="addFiles">
