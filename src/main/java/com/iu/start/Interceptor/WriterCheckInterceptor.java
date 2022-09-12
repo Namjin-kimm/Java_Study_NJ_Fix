@@ -1,15 +1,11 @@
 package com.iu.start.Interceptor;
 
-import java.util.HashMap;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-
 import com.iu.start.board.impl.BoardDTO;
 import com.iu.start.test.members.BankMembersDTO;
 
@@ -35,7 +31,7 @@ public class WriterCheckInterceptor extends HandlerInterceptorAdapter{
 		
 		BoardDTO boardDTO = (BoardDTO)map.get("boardDTO");
 		
-		if(!bankMembersDTO.getUsername().equals(boardDTO.getWriter())) {
+		if(!bankMembersDTO.getUsername().equals(boardDTO.getWriter()) || bankMembersDTO.getUsername() == null) {
 			modelAndView.addObject("message", "작성자만 수정 가능");
 			modelAndView.addObject("url", "./list.iu");
 			modelAndView.setViewName("common/result");

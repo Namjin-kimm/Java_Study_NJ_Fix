@@ -21,6 +21,7 @@ public class MemberInterceptor extends HandlerInterceptorAdapter{
 			return true;
 		}else {
 			System.out.println("로그인 안함");
+			//절대경로도 가능
 			response.sendRedirect("../../../../../../../member/login.iu");
 			return false;
 		}
