@@ -9,6 +9,7 @@ import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -175,6 +176,21 @@ public class NoticeService implements BoardService{
 	@Override
 	public int setDelete(BoardDTO boardDTO) throws Exception {
 		return noticeDAO.setDelete(boardDTO);
+	}
+	
+	public int setReply(NoticeDTO noticeDTO)throws Exception{
+		BoardDTO boardDTO = noticeDAO.getDetail(noticeDTO);
+		NoticeDTO parent = (NoticeDTO)boardDTO;
+		noticeDAO.setStepUpdate(parent);
+		
+		System.out.println(parent.getRef());
+		
+		noticeDTO.setRef(parent.getRef());
+		noticeDTO.setStep(parent.getStep() + 1);
+		noticeDTO.setDepth(parent.getDepth() + 1);
+		
+		int result = noticeDAO.setReplyAdd(noticeDTO);
+		return result;
 	}
 	
 

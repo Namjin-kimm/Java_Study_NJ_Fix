@@ -29,11 +29,12 @@ public class QnaService implements BoardService{
 		BoardDTO boardDTO = qnaDAO.getDetail(qnaDTO);
 		QnaDTO parent = (QnaDTO)boardDTO;
 		
+		qnaDAO.setStepUpdate(parent);
+		
 		qnaDTO.setRef(parent.getRef());
 		qnaDTO.setStep(parent.getStep() + 1);
 		qnaDTO.setDepth(parent.getDepth() + 1);
 		
-		qnaDAO.setStepUpdate(parent);
 		int result = qnaDAO.setReplyAdd(qnaDTO);
 		return result;
 	}

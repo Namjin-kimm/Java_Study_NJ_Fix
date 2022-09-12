@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-			<!DOCTYPE mapper
-		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 		    
 <mapper namespace="com.iu.home.board.notice.NoticeDAO">
 <sql id="search">
@@ -70,6 +70,17 @@
 		SELECT COUNT(NUM) FROM NOTICE
 			<include refid="search"></include>
 	</select>
+	
+	<insert id="setReplyAdd" parameterType="NoticeDTO">
+		<selectKey keyProperty="num" order="BEFORE" resultType="Long">
+			SELECT BOARD_SEQ.NEXTVAL FROM DUAL
+		</selectKey>
+		INSERT INTO QNA VALUES (#{num}, #{title}, #{writer}, #{contents}, SYSDATE, 0,#{num},0,0)
+	</insert>
+	
+	<update id="setStepUpdate" parameterType="NoticeDTO">
+		UPDATE NOTICE SET STEP=STEP+1 WHERE REF=#{ref} AND STEP > #{step}
+	</update>
 
 		    
 </mapper>

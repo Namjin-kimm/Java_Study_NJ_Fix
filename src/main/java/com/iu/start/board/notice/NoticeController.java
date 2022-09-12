@@ -7,13 +7,16 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.start.board.impl.BoardDTO;
+import com.iu.start.board.qna.QnaDTO;
 import com.iu.start.test.members.BankMembersDTO;
 import com.iu.start.util.Pager;
 
@@ -104,6 +107,20 @@ public class NoticeController {
 	@RequestMapping(value = "delete.iu")
 	public String setDelete(BoardDTO boardDTO)throws Exception{
 		int result = noticeService.setDelete(boardDTO);
+		return "redirect:list.iu";
+	}
+	
+	@GetMapping(value = "reply.iu")
+	public ModelAndView setReply (BoardDTO boardDTO)throws Exception{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("boardDTO", boardDTO);
+		mv.setViewName("board/reply");
+		return mv;
+	}
+	
+	@PostMapping(value = "reply.iu")
+	public String setReply(NoticeDTO noticeDTO)throws Exception{
+		int result = noticeService.setReply(noticeDTO);
 		return "redirect:list.iu";
 	}
 
