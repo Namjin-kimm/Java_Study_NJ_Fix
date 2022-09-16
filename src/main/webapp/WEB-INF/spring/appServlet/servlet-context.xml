@@ -58,6 +58,7 @@
    <beans:bean class="com.iu.start.Interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
    
    <!-- mapping -->
+   <!--
    <interceptors>
    
       <interceptor>
@@ -95,6 +96,7 @@
       
       
    </interceptors>
+   -->
 	
 	<context:component-scan base-package="com.iu.start"/>
 	

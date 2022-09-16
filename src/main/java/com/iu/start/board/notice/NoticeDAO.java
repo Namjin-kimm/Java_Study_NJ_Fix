@@ -19,6 +19,18 @@ public class NoticeDAO implements BoardDAO{
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.iu.home.board.notice.NoticeDAO.";
+	
+	
+
+	@Override
+	public BoardFileDTO getFileDetail(BoardFileDTO boardFileDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getFileDetail", boardFileDTO);
+	}
+
+	@Override
+	public int setFileDelete(BoardFileDTO boardFileDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE + "setFileDelete", boardFileDTO);
+	}
 
 	@Override
 	public List<BoardDTO> getList(Pager pager) throws Exception {

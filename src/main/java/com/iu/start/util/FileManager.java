@@ -9,10 +9,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.iu.start.file.FileDTO;
+
 @Component
 public class FileManager {
 //	@Autowired
 //	private ServletContext servletContext;
+	
+	//delete
+	public boolean deleteFile(ServletContext servletContext, String path, FileDTO fileDTO)throws Exception{
+		String realpath = servletContext.getRealPath(path);
+		System.out.println(realpath);
+		File file = new File(realpath, fileDTO.getFileName());
+		return file.delete();
+	}
 	
 	//save
 	

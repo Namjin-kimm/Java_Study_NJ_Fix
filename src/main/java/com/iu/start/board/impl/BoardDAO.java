@@ -7,6 +7,10 @@ import com.iu.start.util.Pager;
 
 public interface BoardDAO {
 	
+	public BoardFileDTO getFileDetail(BoardFileDTO boardFileDTO)throws Exception;
+	
+	public int setFileDelete(BoardFileDTO boardFileDTO)throws Exception;
+	
 //	글목록
 	public List<BoardDTO> getList(Pager pager)throws Exception;
 	
