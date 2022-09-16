@@ -1,11 +1,13 @@
 package com.iu.start.Interceptor;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import com.iu.start.test.members.BankMembersDTO;
+import com.iu.start.test.members.RoleDTO;
 
 public class AdminCheckinterceptor extends HandlerInterceptorAdapter{
 	@Override
@@ -31,7 +33,7 @@ public class AdminCheckinterceptor extends HandlerInterceptorAdapter{
 	      //jsp로 보내려고 함
 	      if(!check) {
 	         request.setAttribute("message", "권한이 없습니다.");
-	         //모델은 곳 Requst다!!
+	         //모델은 곧 Request다!!
 	         request.setAttribute("url", "../../../../../../../");
 	         RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/common/result.jsp");//jsp의 경로를 작성할 것
 	         view.forward(request, response);

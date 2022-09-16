@@ -19,5 +19,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 		 	<typeAlias type="com.iu.start.board.impl.BoardFileDTO" alias="BoardFileDTO"/>
 		 	<typeAlias type="com.iu.start.bankbook.BankBookCommentDTO" alias="BankBookCommentDTO"/>
 		 	<typeAlias type="com.iu.start.util.CommentPager" alias="CommentPager"/>
+		 	<typeAlias type="com.iu.start.test.members.RoleDTO" alias="RoleDTO"/>
 		 </typeAliases>
 		</configuration>

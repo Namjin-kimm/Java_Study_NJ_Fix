@@ -21,7 +21,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.iu.start"/>
 	
 	<!-- Interceptor  -->
 	<!-- Interceptor 객체 생성  -->
@@ -55,8 +54,8 @@
 		</interceptor>
 	</interceptors> -->
 	
-	<beans:bean class="com.iu.start.interceptor.AdminCheckinterceptor" id="adminCheckinterceptor"></beans:bean>
-   <beans:bean class="com.iu.start.interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
+	<beans:bean class="com.iu.start.Interceptor.AdminCheckinterceptor" id="adminCheckinterceptor"></beans:bean>
+   <beans:bean class="com.iu.start.Interceptor.MemberInterceptor" id="memberInterceptor"></beans:bean>
    
    <!-- mapping -->
    <interceptors>
@@ -97,6 +96,7 @@
       
    </interceptors>
 	
+	<context:component-scan base-package="com.iu.start"/>
 	
 	
 </beans:beans>

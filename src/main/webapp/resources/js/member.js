@@ -87,7 +87,7 @@ function joincheck(){
     //5. submit 시에 조건이 충족하는지
     const btn = document.getElementById('btn');
     const form = document.getElementById('form');
-
+    
     btn.addEventListener('click', function(){
         let check = true;
         for(let j=0; j<cb.length;j++){
